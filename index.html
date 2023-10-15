@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng sinh nhật</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url("img/anh-dong-chuc-mung-sinh-nhat-cuc-dep_114933692.gif") no-repeat center center fixed;
+    background-size: cover;
+}
+.current-date {
+    color: red;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold; /* In đậm */
+    font-size: 50px; /* Kích thước lớn hơn */
+}
+.birthday-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.text-birthday {
+    color: #FF0000; /* Màu đỏ */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: bold; /* Đậm */
+    font-family: Arial, sans-serif; /* Font chữ */
+}
+a{
+    text-decoration: none !important;
+    color: white !important;
+}
+.img{
+ 
+ width: 200px;
+ height: 250px;
+}
+</style>
+<body>
+    <div class="current-date">
+        <p id="date-time"></p>
+    </div>
+    <div class="birthday-container">
+        <img class="rounded-circle img" id="birthday-image" src="img/avatar.jpg" alt="Sinh nhật" >
+        <br>
+        <button id="show-message-button" class=" mt-2 btn btn-success">Chỉ là 1 lời chúc thôi</button>
+        <button  class="mt-2 btn btn-success"> <a href="gallery/index.html">Xem lại ảnh thời gian qua nào</a></button>
+
+        <div id="birthday-message" class="hidden text-birthday mt-2">
+            <!-- Lời chúc sinh nhật sẽ xuất hiện ở đây. -->
+        </div>
+       
+    </div>
+    <audio id="player" autoplay loop>
+        <source src="music/y2mate.com - Happy Birthday Remix 2020  Bản Nhạc Của HeineKen Đang Được Sử Dụng Nhiều Trên TikTok.mp3" type="audio/mp3" />
+    </audio>
+   
+</body>
+<script >
+    const showButton = document.getElementById("show-message-button");
+const birthdayMessage = document.getElementById("birthday-message");
+
+showButton.addEventListener("click", () => {
+birthdayMessage.style.display = "block";
+animateMessage();
+});
+
+function animateMessage() {
+const messageText = "Sinh nhật là một ngày quan trọng đối với mỗi người,em mong chị sẽ có 1 ngày ý nghĩa và làm được những gì mình mong muốn. Sinh nhật vui vẻ nhé!!! ";
+const messageArray = messageText.split("");
+let index = 0;
+
+function showLetter() {
+if (index < messageArray.length) {
+  birthdayMessage.innerHTML += messageArray[index];
+  if (index % 50 === 0 && index !== 0) {
+    birthdayMessage.innerHTML += "<br>";
+  }
+  index++;
+  setTimeout(showLetter, 50);
+}
+}
+
+showLetter();
+}
+function updateDateTime() {
+const dateTimeElement = document.getElementById("date-time");
+const currentDate = new Date();
+const day = 16;
+const month = 10; // Tháng bắt đầu từ 0, cần cộng thêm 1
+const year = 2023;
+
+const formattedDate = `${day}/${month}/${year}`;
+dateTimeElement.textContent = `${formattedDate}`;
+}
+
+// Gọi hàm updateDateTime khi trang được tải
+updateDateTime();
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
